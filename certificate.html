@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>प्रमाण पत्र - रामायण प्रश्न मंच</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font + Styling -->
+  <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      background: #fff9e5;
+      font-family: 'Kaisei Opti', serif;
+      text-align: center;
+      color: #4e342e;
+    }
+    .certificate {
+      border: 15px solid goldenrod;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 750px;
+      margin: auto;
+      background: #fffef3;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .certificate h1 {
+      font-size: 2em;
+      color: #bf360c;
+      margin-bottom: 10px;
+    }
+    .certificate p {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+    .corner {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 0.95em;
+      color: #6d4c41;
+    }
+    .download-btn {
+      margin-top: 30px;
+      background-color: #e65100;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .download-btn:hover {
+      background-color: #d84315;
+    }
+  </style>
+</head>
+<body>
+
+<div class="certificate" id="certificate">
+  <h1>🪷 श्री रामचन्द्र जी की जय 🪷</h1>
+  <p>यह प्रमाण पत्र श्रद्धापूर्वक प्रदान किया जाता है:</p>
+  <p><strong>👉 <span id="nameField">[नाम लोड हो रहा है]</span></strong></p>
+  <p>जिन्होंने रामायण प्रश्न मंच में भक्ति और ज्ञान से भाग लिया।</p>
+  <p class="corner">📜 रामायण प्रश्न मंच</p>
+</div>
+
+<!-- Download button -->
+<button class="download-btn" onclick="downloadCertificate()">📥 प्रमाण पत्र डाउनलोड करें</button>
+
+<!-- Script: Load नाम + Download -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+  // Get नाम from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const naam = urlParams.get("name");
+  if (naam) {
+    document.getElementById("nameField").innerText = naam;
+  }
+
+  // Download as Image
+  function downloadCertificate() {
+    html2canvas(document.getElementById("certificate")).then(function(canvas) {
+      let link = document.createElement("a");
+      link.download = "certificate.png";
+      link.href = canvas.toDataURL();
+      link.click();
+    });
+  }
+</script>
+
+</body>
+</html>
